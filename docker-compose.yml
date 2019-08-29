@@ -1,6 +1,6 @@
 version: "3.2"
 services:
-  depiction:
+  rdkit-ubuntu:
     build: 
       context: .
       dockerfile: Dockerfile
