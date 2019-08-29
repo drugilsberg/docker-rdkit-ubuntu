@@ -1,0 +1,8 @@
+version: "3.2"
+services:
+  rdkit-ubuntu:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: rdkit-ubuntu
+    image: drugilsberg/rdkit-ubuntu
