@@ -12,6 +12,7 @@ RUN apt-get update \
     libboost-serialization-dev \
     libboost-python-dev \
     libboost-regex-dev \
+    libboost-iostreams-dev \
     libcairo2-dev \
     libeigen3-dev \
     python3-dev \
@@ -56,6 +57,7 @@ RUN apt-get update \
     libboost-serialization1.62.0 \
     libboost-system1.62.0 \
     libboost-thread1.62.0 \
+    libboost-iostreams1.62.0 \
     libcairo2-dev \
     python3-dev \
     python3-numpy \
