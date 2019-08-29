@@ -75,6 +75,7 @@ COPY --from=rdkit-build-env /usr/lib/python3/dist-packages/rdkit /usr/lib/python
 # workaround to load boost dynamically
 RUN ln -s /usr/lib/x86_64-linux-gnu/libboost_python-py36.so.1.62.0 /usr/lib/x86_64-linux-gnu/libboost_python3-py36.so.1.65.1
 RUN ln -s /usr/lib/x86_64-linux-gnu/libboost_serialization.so.1.62.0 /usr/lib/x86_64-linux-gnu/libboost_serialization.so.1.65.1
+RUN ln -s /usr/lib/x86_64-linux-gnu/libboost_iostreams.so.1.62.0 /usr/lib/x86_64-linux-gnu/libboost_iostreams.so.1.65.1
 # update python packages
 RUN pip3 install --upgrade --no-cache-dir pip setuptools
 CMD /bin/bash
