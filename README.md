@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/drugilsberg/docker-rdkit-ubuntu.svg?branch=master)](https://travis-ci.org/drugilsberg/docker-rdkit-ubuntu)
+
 # docker-rdkit-ubuntu
 
 A docker image containing a "lightweight" RDKit installation.
