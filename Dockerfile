@@ -19,7 +19,7 @@ RUN apt-get update \
     python3-numpy \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
-ARG RDKIT_VERSION=Release_2019.09.1
+ARG RDKIT_VERSION=Release_2019_09_1
 RUN wget --quiet https://github.com/rdkit/rdkit/archive/${RDKIT_VERSION}.tar.gz \
  && tar -xzf ${RDKIT_VERSION}.tar.gz \
  && mv rdkit-${RDKIT_VERSION} rdkit \
