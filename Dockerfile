@@ -32,7 +32,7 @@ RUN cmake -Wno-dev \
   -D RDK_BUILD_THREADSAFE_SSS=ON \
   -D RDK_OPTIMIZE_NATIVE=ON \
   -D PYTHON_EXECUTABLE=/usr/bin/python3 \
-  -D PYTHON_INCLUDE_DIR=/usr/include/python3.6 \
+  -D PYTHON_INCLUDE_DIR=/usr/include/python3.7 \
   -D PYTHON_NUMPY_INCLUDE_PATH=/usr/lib/python3/dist-packages/numpy/core/include \
   -D CMAKE_INSTALL_PREFIX=/usr \
   -D CMAKE_BUILD_TYPE=Release \
@@ -67,7 +67,7 @@ COPY --from=rdkit-build-env /usr/share/RDKit /usr/share/RDKit
 COPY --from=rdkit-build-env /usr/include/rdkit /usr/include/rdkit
 COPY --from=rdkit-build-env /usr/lib/python3/dist-packages/rdkit /usr/lib/python3/dist-packages/rdkit
 # workaround to load boost dynamically
-RUN ln -s /usr/lib/x86_64-linux-gnu/libboost_python-py36.so.1.67.0 /usr/lib/x86_64-linux-gnu/libboost_python3-py36.so.1.65.1
+RUN ln -s /usr/lib/x86_64-linux-gnu/libboost_python-py37.so.1.67.0 /usr/lib/x86_64-linux-gnu/libboost_python3-py37.so.1.65.1
 RUN ln -s /usr/lib/x86_64-linux-gnu/libboost_serialization.so.1.67.0 /usr/lib/x86_64-linux-gnu/libboost_serialization.so.1.65.1
 RUN ln -s /usr/lib/x86_64-linux-gnu/libboost_iostreams.so.1.67.0 /usr/lib/x86_64-linux-gnu/libboost_iostreams.so.1.65.1
 # update python packages
