@@ -39,7 +39,7 @@ RUN cmake -Wno-dev \
   ..
 RUN make -j $(nproc) \
  && make install
-FROM ubuntu:bionic AS rdkit-env
+FROM ubuntu:eoan AS rdkit-env
 # install runtime dependencies
 RUN apt-get update \
  && apt-get install -yq --no-install-recommends \
