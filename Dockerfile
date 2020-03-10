@@ -1,18 +1,12 @@
 # RDKit inspired by https://github.com/mcs07/docker-rdkit/blob/master/Dockerfile
-FROM ubuntu:bionic AS rdkit-build-env
+FROM ubuntu:eoan AS rdkit-build-env
 RUN apt-get update \
  && apt-get install -yq --no-install-recommends \
     ca-certificates \
     build-essential \
     cmake \
     wget \
-    libboost-dev \
-    libboost-system-dev \
-    libboost-thread-dev \
-    libboost-serialization-dev \
-    libboost-python-dev \
-    libboost-regex-dev \
-    libboost-iostreams-dev \
+    libboost-all-dev \
     libcairo2-dev \
     libeigen3-dev \
     python3-dev \
@@ -38,26 +32,26 @@ RUN cmake -Wno-dev \
   -D RDK_BUILD_THREADSAFE_SSS=ON \
   -D RDK_OPTIMIZE_NATIVE=ON \
   -D PYTHON_EXECUTABLE=/usr/bin/python3 \
-  -D PYTHON_INCLUDE_DIR=/usr/include/python3.6 \
+  -D PYTHON_INCLUDE_DIR=/usr/include/python3.7 \
   -D PYTHON_NUMPY_INCLUDE_PATH=/usr/lib/python3/dist-packages/numpy/core/include \
   -D CMAKE_INSTALL_PREFIX=/usr \
   -D CMAKE_BUILD_TYPE=Release \
   ..
 RUN make -j $(nproc) \
  && make install
-FROM ubuntu:bionic AS rdkit-env
+FROM ubuntu:eoan AS rdkit-env
 # install runtime dependencies
 RUN apt-get update \
  && apt-get install -yq --no-install-recommends \
-    libboost-atomic1.62.0 \
-    libboost-chrono1.62.0 \
-    libboost-date-time1.62.0 \
-    libboost-python1.62.0 \
-    libboost-regex1.62.0 \
-    libboost-serialization1.62.0 \
-    libboost-system1.62.0 \
-    libboost-thread1.62.0 \
-    libboost-iostreams1.62.0 \
+    libboost-atomic1.67.0 \
+    libboost-chrono1.67.0 \
+    libboost-date-time1.67.0 \
+    libboost-python1.67.0 \
+    libboost-regex1.67.0 \
+    libboost-serialization1.67.0 \
+    libboost-system1.67.0 \
+    libboost-thread1.67.0 \
+    libboost-iostreams1.67.0 \
     libcairo2-dev \
     python3-dev \
     python3-numpy \
@@ -73,9 +67,9 @@ COPY --from=rdkit-build-env /usr/share/RDKit /usr/share/RDKit
 COPY --from=rdkit-build-env /usr/include/rdkit /usr/include/rdkit
 COPY --from=rdkit-build-env /usr/lib/python3/dist-packages/rdkit /usr/lib/python3/dist-packages/rdkit
 # workaround to load boost dynamically
-RUN ln -s /usr/lib/x86_64-linux-gnu/libboost_python-py36.so.1.62.0 /usr/lib/x86_64-linux-gnu/libboost_python3-py36.so.1.65.1
-RUN ln -s /usr/lib/x86_64-linux-gnu/libboost_serialization.so.1.62.0 /usr/lib/x86_64-linux-gnu/libboost_serialization.so.1.65.1
-RUN ln -s /usr/lib/x86_64-linux-gnu/libboost_iostreams.so.1.62.0 /usr/lib/x86_64-linux-gnu/libboost_iostreams.so.1.65.1
+RUN ln -s /usr/lib/x86_64-linux-gnu/libboost_python-py37.so.1.67.0 /usr/lib/x86_64-linux-gnu/libboost_python3-py37.so.1.65.1
+RUN ln -s /usr/lib/x86_64-linux-gnu/libboost_serialization.so.1.67.0 /usr/lib/x86_64-linux-gnu/libboost_serialization.so.1.65.1
+RUN ln -s /usr/lib/x86_64-linux-gnu/libboost_iostreams.so.1.67.0 /usr/lib/x86_64-linux-gnu/libboost_iostreams.so.1.65.1
 # update python packages
 RUN pip3 install --upgrade --no-cache-dir pip setuptools
 CMD /bin/bash
