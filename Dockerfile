@@ -71,5 +71,5 @@ RUN ln -s /usr/lib/x86_64-linux-gnu/libboost_python-py37.so.1.67.0 /usr/lib/x86_
 RUN ln -s /usr/lib/x86_64-linux-gnu/libboost_serialization.so.1.67.0 /usr/lib/x86_64-linux-gnu/libboost_serialization.so.1.65.1
 RUN ln -s /usr/lib/x86_64-linux-gnu/libboost_iostreams.so.1.67.0 /usr/lib/x86_64-linux-gnu/libboost_iostreams.so.1.65.1
 # update python packages
-RUN pip3 install --upgrade --no-cache-dir pip setuptools
+RUN pip3 install --upgrade --no-cache-dir pip setuptools pytest>=5.4.2
 CMD /bin/bash
