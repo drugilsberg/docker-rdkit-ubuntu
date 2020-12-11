@@ -1,5 +1,5 @@
 # RDKit inspired by https://github.com/mcs07/docker-rdkit/blob/master/Dockerfile
-FROM ubuntu:eoan AS rdkit-build-env
+FROM ubuntu:20.04 AS rdkit-build-env
 RUN apt-get update \
  && apt-get install -yq --no-install-recommends \
     ca-certificates \
@@ -39,7 +39,7 @@ RUN cmake -Wno-dev \
   ..
 RUN make -j $(nproc) \
  && make install
-FROM ubuntu:eoan AS rdkit-env
+FROM ubuntu:20.04 AS rdkit-env
 # install runtime dependencies
 RUN apt-get update \
  && apt-get install -yq --no-install-recommends \
