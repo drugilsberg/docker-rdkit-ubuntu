@@ -1,7 +1,8 @@
 # RDKit inspired by https://github.com/mcs07/docker-rdkit/blob/master/Dockerfile
 FROM ubuntu:20.04 AS rdkit-build-env
+ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update \
- && apt-get install -yq --no-install-recommends \
+ && apt-get install -yq -force-yes --no-install-recommends \
     ca-certificates \
     build-essential \
     cmake \
@@ -40,9 +41,10 @@ RUN cmake -Wno-dev \
 RUN make -j $(nproc) \
  && make install
 FROM ubuntu:20.04 AS rdkit-env
+ENV DEBIAN_FRONTEND noninteractive
 # install runtime dependencies
 RUN apt-get update \
- && apt-get install -yq --no-install-recommends \
+ && apt-get install -yq -force-yes --no-install-recommends \
     libboost-atomic1.67.0 \
     libboost-chrono1.67.0 \
     libboost-date-time1.67.0 \
