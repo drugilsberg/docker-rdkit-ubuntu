@@ -2,7 +2,7 @@
 FROM ubuntu:20.04 AS rdkit-build-env
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update \
- && apt-get install -yq --allow --no-install-recommends \
+ && apt-get install -yq --no-install-recommends \
     ca-certificates \
     build-essential \
     cmake \
@@ -45,7 +45,7 @@ FROM ubuntu:20.04 AS rdkit-env
 ENV DEBIAN_FRONTEND noninteractive
 # install runtime dependencies
 RUN apt-get update \
- && apt-get install -yq --allow --no-install-recommends \
+ && apt-get install -yq --no-install-recommends \
     libboost-atomic1.71.0 \
     libboost-chrono1.71.0 \
     libboost-date-time1.71.0 \
